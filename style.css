@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+ul{
+    list-style: none;
+}
+header{
+    padding-top: 32px; /*pode ser também margin-top: 32px*/
+    text-align: center;
+
+    /*abaixo é feito um calculo para que seja alocado um espaço no header para que ao carregar a pagina os elementos fiquem posicionados
+    cada um no seu lugar, deixando o espaço para a foto ja alocado*/
+    height: calc(120px + 32px);
+}
+header div img{
+    width: 100%; /*100% em relação a div do header*/
+    border-radius: 50%;
+}
+header div{
+    width: 120px;
+    margin: auto; /*DIVs nao tem propriedades de texto por isso é usado o margin: auto para centralizar*/
+    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50.52%, #E2D45C 100%); /*é a listrinha LGBT*/
+    border-radius: 50%;
+    display: flex;
+    padding: 4px;
+
+    /*FAZ COM QUE A ANIMAÇÃOZINHA FIQUE MAIS SUAVE*/
+    transition: transform .3s;
+}
+header div:hover{
+    /*FAZ A ANIMAÇÃOZINHA DE ZOOM QUANDO PASSA O MOUSE EM CIMA*/
+    transform: scale(1.1);
+}
+body{
+    background-image: url(assets/bg.jpg);
+    background-position: top center; /*faz com que a imagem fique no topo da tela e centralizada, ajustando-se ao tamanho da janela*/
+    background-size: 100% auto; /*o primeiro (100%) refere-se a largura e o segundo (auto) refere-se a altura da imagem*/
+    background-repeat: no-repeat; /*para nao repetir o background, sem esse parametro ele repetiria a imagem*/
+    background-color: #121214;
+}
+body *{
+    font-family: Inter, sans-serif; /*caso nao encontre a fonte INTER irá usar a fonte san-serif*/
+    line-height: 160%;
+}
+/*main *{
+    border: 1px solid red;
+}*/
+main{
+    max-width: 580px;
+    width: 90%;
+    margin: auto;
+
+    /* abaixo esta dando espaçamento entre as divs*/
+    display: grid;
+    gap: 24px;
+
+    margin-top: 32px; /*gap entre a foto do topo com o main*/
+    margin-bottom: 32px;
+}
+section{
+    color: white;
+    background-image: linear-gradient(90deg, #9572FC 0%, #43E7AD 50.52%, #E2D45C 100%); /*é a listrinha LGBT*/
+    border-radius: 8px;
+    padding-top: 4px;
+}
+section div{
+    background-color: #2A2634;
+    padding: 32px;
+    padding-top: 24px;
+    border-radius: 8px;
+}
+section h2{ /*TODO H2 DENTRO DE SECTION*/
+    font-weight: 900; /*importante verificar se todos esses parametros nao estao setados por padrão pelo navegador, se estiver pode ser excluido*/
+    font-size: 24px;
+    /* or 38px */
+    letter-spacing: -0.47px;
+}
+section p{
+    font-weight: 400;
+    font-size: 16px;
+    /* identical to box height, or 26px */
+    letter-spacing: -0.18px;
+    color: #A1A1AA;
+}
+section ul{
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+
+    flex-wrap: wrap; /*FAZ COM QUE A LISTA QUEBRE E NAO EXIBA SOMENTE UM ITEM AO LADO DO OUTRO PRA SEMPRE*/
+}
+section ul li{
+    /*FAZ COM QUE A TRANSIÇÃO FIQUE MAIS SUAVE*/
+    transition: transform .3s;
+}
+section ul li:hover{
+    /*FAZ A TRANSIÇÃO DE ZOOM QUANDO PASSA O MOUSE EM CIMA*/
+    transform: scale(1.1);
+}
+.games-list img{
+    width: 90px;
+    border-radius: 8px;
+}
+.streamers-list img{
+    width: 70px;
+    border-radius: 999px;
+    border: 1px solid #443E54;
+}
+
+/*   ANIMAÇÃO   */
+
+
+/*
+
+
+O primeiro passo para fazer a animação é fazer e nomear ela. Exemplo: ;
+
+sintaxe: 
+@keyframe fromLeft{
+    from{
+        opacity: 0;
+        transform: translateY(-32px)
+    }
+
+    to{
+        opacity: 0;
+        translateY(0)
+    }
+}
+
+Explicão: Acima eu criei a animação usando com nome "fromLeft" e determinei que ela comecará "from" no eixo Y -32px
+e vai parar no "to" no valor 0 do eixo Y
+
+Depois de criar a animação é preciso chamar ela no elemento que voce desejar aplica-la
+Exemplo: 
+header div{
+    animation: fromTop
+    }
+
+*/
+header div{
+    animation: fromTop 
+    .6s 
+    .1s /*.6s é o tempo da transição .1s é o delay para iniciar a transição*/
+    backwards; /*backwards quer dizer que ele vai pegar as propriedades do fromTop e salvar aqui antes, para depois executar*/
+}
+
+main section{
+    animation: fromBottom .7s backwards;
+}
+main section:nth-child(1){
+    animation-delay: 0;
+}
+main section:nth-child(2){
+    animation-delay: .2s;
+}
+main section:nth-child(3){
+    animation-delay: .4s;
+}
+
+@keyframes fromTop{
+    from{
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    } 
+}
+
+@keyframes fromBottom{
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
